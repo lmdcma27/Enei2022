@@ -21,13 +21,15 @@ import schedule
 dic ={'cristian':'1284302283', 'luis':'1410000448'}
 
 
-def bot_send_text(bot_message, bot_chatID):
-    
-    bot_token = '5700827288:AAEW8yE5wN88xSi7kkNwV_scWBh8S4Ijyeo'
-    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+class ENEIbot:
+    def __init__(self) -> None:
+        self.__TOKEN = '5486126731:AAFJV5QVDXuQoLk6RY-GQFpvjruwnDhSrU4'
+        self._encuestadores = {}
 
-    response = requests.get(send_text)
-
-    return response
+    def bot_send_text(self, message, userID):
+        send_text = f'https://api.telegram.org/bot{self.__TOKEN}/sendMessage?chat_id={userID}&parse_mode=Markdown&text={message}'
+        response = requests.get(send_text)
+        return response
 #Buenas tardes, soy el bot encargado de notificar errores duante la ENEI
-test_bot = bot_send_text('One piece', dic['luis'])
+p = ENEIbot()
+test_bot = p.bot_send_text('One piece', dic['luis'])
